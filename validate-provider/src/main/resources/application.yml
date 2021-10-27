@@ -1,0 +1,35 @@
+server:
+  port: 8083
+
+
+spring:
+  profiles:
+    active: dev
+  main:
+    banner-mode: off
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+
+providers:
+  - name: provider1
+    url: http://localhost:8082/v1/api/account/validate/
+  - name: provider2
+    url: http://localhost:8084/v2/api/account/validate/
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+
+providers:
+  - name: provider1
+    url: http://prod:8082/v1/api/account/validate
+  - name: provider2
+    url: http://prod:8084/v2/api/account/validate
